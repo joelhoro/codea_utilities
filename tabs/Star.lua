@@ -15,14 +15,14 @@ function Star:init(x,y,w,r)
     self.ready=false
 end
 
-function Star:activate()
+function Star:Activate()
     local w = self.w
     self.w=self.w/5
     self.ready = false
     tween(0.5,self,{w=w, r=self.r-360},tween.easing.cubicOut,function() self.ready=true end)
 end
 
-function Star:spiral(x,y,w)
+function Star:Spiral(x,y,w)
     self.r=360
     tween(3,self,{x=x,y=y,w=w,r=0},tween.easing.cubicInOut)
 end
@@ -38,5 +38,6 @@ function Star:draw()
     sprite("Cargo Bot:Star Filled",self.x,self.y,self.w)
     popMatrix()
     popStyle()
+    self:DragIcon()
 end
 

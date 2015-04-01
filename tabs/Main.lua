@@ -8,7 +8,7 @@ function setup()
     parameter.action("regroup",spiral)
     parameter.action("disperse",disperse)
   --  star1:activate()
-    cb = function(z) star.z=z;star:activate();print("xxx") end
+    cb = function(z) star.z=z;star:Activate();print("xxx") end
   --  cb = function() end
  --   parameter.number("x",-0.3,0.3,0,cb)
     obj = {r=0}  
@@ -27,7 +27,8 @@ end
 function makespiral()
     pos = {200,300,400,500,600,700}
     for i,v in ipairs(stars) do
-        v:activate()
+        v:SetDraggable(true)
+        v:Activate()
     end
 end
 
@@ -70,7 +71,7 @@ end
 function spiral()
     stars = permute(stars)
     for i,v in ipairs(stars) do
-        v:spiral(pos[i],400)
+        v:Spiral(pos[i],400)
     end
 end
 

@@ -59,7 +59,23 @@ end
 -- Allows to dynamicallly toggle dragging behaviour
 -- if overridden
 function Draggable:IsDraggable()
-    return true
+    if self.isdraggable ~= nil then
+        return self.isdraggable
+    else
+        return false
+    end
+end
+
+function Draggable:SetDraggable(value)
+    self.isdraggable = value
+end
+
+function Draggable:DragIcon(x,y)
+    x = x or self.x + self.w/2
+    y = y or self.y + self.w/2
+    if self:IsDraggable() then
+        sprite("Cargo Bot:Command Right",x,y)
+    end
 end
 
 -- Tween created when dragging starts
