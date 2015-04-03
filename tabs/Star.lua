@@ -1,5 +1,5 @@
 
-Star = class(Draggable)
+Star = class()
 
 function Star:Move(touch)
     self.x = touch.x
@@ -15,6 +15,18 @@ function Star:init(x,y,w,r)
     self.ready=false
 end
 
+function Star:AttachDraggable()
+    Draggable:Attach(self)
+         --   Move = function(touch) self.x=touch.x end,
+         --   IsInside = function(touch) [check distance] end     --} ) 
+    self:SetDraggable(true)
+   -- Draggable:Detach(self)
+end
+
+function Star:DetachDraggable()
+    Draggable:Detach(self)
+end
+
 function Star:Activate()
     local w = self.w
     self.w=self.w/5
@@ -27,6 +39,7 @@ function Star:Spiral(x,y,w)
     tween(3,self,{x=x,y=y,w=w,r=0},tween.easing.cubicInOut)
 end
 
+
 function Star:draw()
     pushMatrix()
     pushStyle()
@@ -38,6 +51,6 @@ function Star:draw()
     sprite("Cargo Bot:Star Filled",self.x,self.y,self.w)
     popMatrix()
     popStyle()
-    self:DragIcon()
+  --  self:DragIcon()
 end
 

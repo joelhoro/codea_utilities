@@ -11,3 +11,5 @@ end
 function p()
     print("hi")
 end
+
+function NoOp() end

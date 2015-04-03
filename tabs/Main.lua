@@ -1,12 +1,19 @@
 -- test2
 
+A = class()
+
+function A:init()
+    self.x = 999
+end
+
 -- Use this function to perform your initial setup
 function setup()
     log = DummyLog("Test",true)
     smoke =Smoke(400,400)
-
+    -- hello - p()
     parameter.action("regroup",spiral)
     parameter.action("disperse",disperse)
+    parameter.action("detach",detach)
   --  star1:activate()
     cb = function(z) star.z=z;star:Activate();print("xxx") end
   --  cb = function() end
@@ -16,10 +23,7 @@ function setup()
 
     disperse()
     parameter.number("x",1,250)
-    x=50 
-    a  = {2,1,-4,3,6,2}
-
-    print(a[1])
+        
 end
 
 
@@ -27,11 +31,16 @@ end
 function makespiral()
     pos = {200,300,400,500,600,700}
     for i,v in ipairs(stars) do
-        v:SetDraggable(true)
+        v:AttachDraggable(true)
         v:Activate()
     end
 end
 
+function detach()
+    for i,v in ipairs(stars) do
+        v:DetachDraggable()
+    end
+end
 
 function disperse()
     stars = {
@@ -94,9 +103,9 @@ function drawarc(x,y,r,a1,a2)
 end
 
 function touched(touch)
-    print(touch)
+    --print(touch)
     if touch.tapCount >1 then
-        spiral()
+   --     spiral()
     end
     for i,star in ipairs(stars) do
         star:touched(touch)
