@@ -58,6 +58,7 @@ screens = {
     Stars = StarScreen,
     Smoke = SmokeScreen,
     Text3D = Text3DScreen,
-    Arcs = ArcScreen
+    Arcs = ArcScreen,
+    TextEffects = TextEffectsScreen
 }
 

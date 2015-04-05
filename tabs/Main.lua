@@ -28,6 +28,7 @@ function keyboard(touch)
 end
 
 function draw()
+    background(255, 255, 255, 255)
     pushStyle()
     screen:draw()
     popStyle()
