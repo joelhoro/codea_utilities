@@ -57,8 +57,9 @@ end
 screens = {
     Stars = StarScreen,
     Smoke = SmokeScreen,
-    Text3D = Text3DScreen,
+--    Text3D = Text3DScreen,
     Arcs = ArcScreen,
-    TextEffects = TextEffectsScreen
+    TextEffects = TextEffectsScreen,
+    Sprites = SpriteScene
 }
 

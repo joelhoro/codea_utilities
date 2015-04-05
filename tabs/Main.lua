@@ -32,6 +32,7 @@ function draw()
     pushStyle()
     screen:draw()
     popStyle()
-    text(screen.title,WIDTH-50,20)
+    text(screen.title,WIDTH-50,40)
+    text(math.floor(1/DeltaTime).." fps",WIDTH-50,20)
 end
 
