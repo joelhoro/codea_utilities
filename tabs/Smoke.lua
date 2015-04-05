@@ -1,9 +1,9 @@
 Smoke = class()
 
 function Smoke:init(x,y)
-    -- you can accept and set parameters here
     self.x = x
     self.y = y
+    ---- initialization
     self.numberofclouds = 4
     self.clouds = {}
     local cycle = 2.5
@@ -20,8 +20,7 @@ end
 
 function Smoke:draw()
     local smoke = "Cargo Bot:Smoke Particle"
-    w = spriteSize(smoke)
-    print("x",self.clouds)
+    local w = spriteSize(smoke)
     for i,c in ipairs(self.clouds) do
         if c.s>1 then
             local x,y = self.x+c.x*40+0.02*c.x*c.y^2,self.y+c.y
@@ -38,3 +37,19 @@ end
 function Smoke:touched(touch)
 -- Codea does not automatically call this method
 end
+
+-------- ========= SMOKESCREEN ============
+SmokeScreen = class()
+
+function SmokeScreen:init()
+    self.smoke = Smoke(400,400)   
+    parameter.action("start") 
+end
+
+function SmokeScreen:draw()
+    background(255, 255, 255, 255)
+    self.smoke:draw()
+end
+
+
+

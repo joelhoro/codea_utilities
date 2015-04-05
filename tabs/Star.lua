@@ -54,3 +54,63 @@ function Star:draw()
   --  self:DragIcon()
 end
 
+----- STARSCREEN ------
+
+StarScreen = class()
+
+function StarScreen:init()    
+    parameter.action("regroup",function() self:MakeSpiral() end)
+    parameter.action("disperse",function() self:disperse() end)
+    parameter.action("detach",function() self:detach() end)
+    self:disperse()    
+end
+
+
+function StarScreen:MakeSpiral()
+    pos = {200,300,400,500,600,700}
+    for i,v in ipairs(self.stars) do
+        v:AttachDraggable(true)
+        v:Activate()
+    end
+end
+
+function StarScreen:detach()
+    for i,v in ipairs(self.stars) do
+        v:DetachDraggable()
+    end
+end
+
+function StarScreen:disperse()
+    self.stars = {
+        Star(100,600,100,0),
+        Star(600,200,100,0),
+        Star(200,250,100,0),
+        Star(250,550,100,0),
+        Star(100,150,100,0),
+        Star(700,650,100,0),    
+    }
+ --   log:printTable(self.stars)
+    self:MakeSpiral()
+
+end
+
+function StarScreen:touched(touch)
+    if touch.tapCount >1 then
+   --     spiral()
+    end
+    for i,star in ipairs(self.stars) do
+        star:touched(touch)
+    end
+end
+
+
+
+function StarScreen:draw()
+    background(255, 255, 255, 255)
+
+    for i,v in ipairs(self.stars) do
+        v:draw()
+    end    
+end
+
+
