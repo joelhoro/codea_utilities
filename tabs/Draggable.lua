@@ -1,5 +1,3 @@
-
-
 Draggable = class()
 
 -- this is an abstract class, no init
@@ -15,6 +13,8 @@ Draggable = class()
 --      
 --      -- continue other handling of touch
 --
+
+touchCache = {}
 
 function Draggable:init()
     self.classname = "Draggable"
@@ -58,13 +58,15 @@ function Draggable:touched(touch)
        -- print (i)
 --    end
     if not self:IsDraggable() then return end
-    if touch.state == BEGAN then
+    if touch.state == BEGAN and touchCache[touch.id] == nil then
         if self.IsInsideFn(touch) then
+            touchCache[touch.id] = 1
             self.touch = touch    
             self.StartDraggingFn(touch)
         end
     elseif self:TouchIsValid(touch) then
         if touch.state == ENDED then
+            touchCache[touch.id] = nil
             self:StopDragging()
         elseif touch.state == MOVING then
             self:Move(touch)
@@ -123,7 +125,7 @@ end
 
 -- Tween created when dragging starts
 function Draggable:StartDraggingFnDefault(touch)
-    self.dragtween = tween.path(0.3,self.parent,{{w=self.parent.w},{w=self.parent.w*1.2}},{loop=tween.loop.pingpong})
+    self.parent.dragtween = tween.path(0.3,self.parent,{{w=self.parent.w},{w=self.parent.w*1.2}},{loop=tween.loop.pingpong})
 end
 
 

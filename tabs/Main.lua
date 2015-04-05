@@ -9,7 +9,7 @@ end
 -- Use this function to perform your initial setup
 function setup()
     log = DummyLog("Test",true)
-    smoke =Smoke(400,400)
+
     -- hello - p()
     parameter.action("regroup",spiral)
     parameter.action("disperse",disperse)
@@ -23,7 +23,7 @@ function setup()
 
     disperse()
     parameter.number("x",1,250)
-        
+    smoke =Smoke(400,400)
 end
 
 
@@ -119,6 +119,7 @@ function draw()
 --   ellipse(400,400,100)
     strokeWidth(5)
     stroke(33, 28, 28, 255)
+ --   print(smoke.draw())
     --smoke:draw()
     local r1,r2=obj.r,obj.r-100
     if r1>r2 then
