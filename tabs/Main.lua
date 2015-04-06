@@ -1,6 +1,7 @@
 function setup()
     log = DummyLog("Test",true)
     SetScreen(readLocalData("screen","Stars"))
+    FPS = 0
 end
 
 function SetScreen(title)
@@ -33,6 +34,7 @@ function draw()
     screen:draw()
     popStyle()
     text(screen.title,WIDTH-50,40)
-    text(math.floor(1/DeltaTime).." fps",WIDTH-50,20)
+    FPS = 0.95*FPS + 0.05 / DeltaTime
+    text(math.floor(FPS).." fps",WIDTH-50,20)
 end
 
