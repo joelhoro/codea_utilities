@@ -60,6 +60,7 @@ screens = {
 --    Text3D = Text3DScreen,
     Arcs = ArcScreen,
     TextEffects = TextEffectsScreen,
-    Sprites = SpriteScene
+    Sprites = SpriteScene,
+    Tint = TintScene
 }
 

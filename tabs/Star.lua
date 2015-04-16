@@ -70,7 +70,8 @@ function StarScreen:MakeSpiral()
     pos = {200,300,400,500,600,700}
     for i,v in ipairs(self.stars) do
         v:AttachDraggable(true)
-        v:Activate()
+     --   v:Activate()
+        v:Spiral(pos[i],400,100)
     end
 end
 
@@ -81,16 +82,23 @@ function StarScreen:detach()
 end
 
 function StarScreen:disperse()
+    local w = 80
     self.stars = {
-        Star(100,600,100,0),
-        Star(600,200,100,0),
-        Star(200,250,100,0),
-        Star(250,550,100,0),
-        Star(100,150,100,0),
-        Star(700,650,100,0),    
+        Star(100,600,w,0),
+        Star(600,200,w,0),
+        Star(200,250,w,0),
+        Star(250,550,w,0),
+        Star(100,150,w,0),
+        Star(700,650,w,0),    
     }
+    
+    for i,v in ipairs(self.stars) do
+        v:AttachDraggable(true)
+        v:Activate()
+    --    v:Spiral(pos[i],400,100)
+    end
  --   log:printTable(self.stars)
-    self:MakeSpiral()
+--    self:MakeSpiral()
 
 end
 

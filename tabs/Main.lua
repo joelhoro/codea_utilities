@@ -6,14 +6,18 @@ end
 
 function SetScreen(title)
     parameter.clear()
-    for title, className in pairs(screens) do
-        parameter.action("View "..title, function() SetScreen(title) end )
-    end
 
     local className = screens[title]
     screen = className()
     screen.title = title
     saveLocalData("screen", title)
+    message = {}
+    message.text ="Other screens"
+    parameter.watch("message.text")
+    for title, className in pairs(screens) do
+        parameter.action("View '"..title.."'", function() SetScreen(title) end )
+    end
+
 end
 
 function touched(touch)
